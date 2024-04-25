@@ -1,16 +1,53 @@
 import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useHistory } from "react-router-dom";
+import axios from "axios";
 
 const Login = () => {
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [show, setShow] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const history = useHistory();
+
+  const notify = (msg) => toast(msg);
 
   const handleClick = () => setShow(!show);
-  const submitHandler = () => {};
+  const submitHandler = async (e) => {
+    setLoading(true);
+    if (!email || !password) {
+      notify("Please fill all the fields");
+      setLoading(false);
+      return;
+    }
+
+    try {
+      e.preventDefault();
+      const config = {
+        headers: {
+          "Content-type": "application/json",
+        },
+      };
+      const { data } = await axios.post(
+        "api/user/login",
+        { email, password },
+        config
+      );
+      notify("Login Successful");
+      localStorage.setItem("userInfo", JSON.stringify(data));
+      setLoading(false);
+      history.push("/chats");
+    } catch (error) {
+      notify("Error Occured");
+      setLoading(false);
+    }
+  };
 
   return (
     <div>
+      <ToastContainer />
       <form>
         <div className="input email flex flex-col p-2">
           <label htmlFor="email">Email</label>
@@ -51,6 +88,7 @@ const Login = () => {
       >
         Get Guest User Credentials
       </button>
+      {loading ? <h1>Loading</h1> : null}
     </div>
   );
 };
