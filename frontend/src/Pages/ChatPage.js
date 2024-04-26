@@ -1,20 +1,21 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import { ChatState } from "../Context/ChatProvider";
+import ChatBox from "../components/ChatBox";
+import MyChats from "../components/MyChats";
+import SearchBar from "../components/miscellaneous/SearchBar";
+import SideDrawer from "../components/miscellaneous/SideDrawer";
 
 const ChatPage = () => {
-  const [chats, setChats] = useState([]);
-  const fetchChats = async () => {
-    const { data } = await axios.get("/api/chat");
-    setChats(data);
-  };
-  useEffect(() => {
-    fetchChats();
-  }, []);
+  const { user } = ChatState();
   return (
-    <div>
-      {chats.map((chat) => (
-        <div key={chat._id}>{chat.chatName}</div>
-      ))}
+    <div className="p-5 flex gap-5">
+      {user && <SideDrawer />}
+      <div className="flex justify-between">
+        <div className="w-[30vw] p-4">
+          {user && <SearchBar />}
+          {user && <MyChats />}
+        </div>
+        {user && <ChatBox />}
+      </div>
     </div>
   );
 };

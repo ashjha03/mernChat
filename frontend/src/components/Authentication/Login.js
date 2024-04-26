@@ -81,7 +81,7 @@ const Login = () => {
       </form>
       <button
         onClick={() => {
-          setEmail("guest@example.com");
+          setEmail("guest@gmail.com");
           setPassword("123456");
         }}
         className="border p-2 bg-[#E06685] hover:bg-[#ea859e] text-white font-bold rounded-lg w-full mt-2"
