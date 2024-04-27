@@ -10,7 +10,7 @@ const ChatPage = () => {
     <div className="p-5 flex gap-5">
       {user && <SideDrawer />}
       <div className="flex justify-between">
-        <div className="w-[30vw] p-4">
+        <div className="w-[30vw] py-4 px-2">
           {user && <SearchBar />}
           {user && <MyChats />}
         </div>

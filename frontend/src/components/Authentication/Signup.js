@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
@@ -87,7 +87,6 @@ const Signup = () => {
 
   return (
     <div>
-      <ToastContainer />
       <form action="">
         <div className="input name flex flex-col p-2">
           <label htmlFor="name">Name</label>

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
@@ -47,7 +47,6 @@ const Login = () => {
 
   return (
     <div>
-      <ToastContainer />
       <form>
         <div className="input email flex flex-col p-2">
           <label htmlFor="email">Email</label>
