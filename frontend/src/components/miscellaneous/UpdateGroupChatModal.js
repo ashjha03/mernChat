@@ -171,7 +171,7 @@ const UpdateGroupChatModal = ({
             onClick={handleRename}
             className="p-2 bg-[#EA6F8B] hover:bg-[#e97e97] rounded-xl"
           >
-            Update
+            {renameloading ? "Updaing" : "Update"}
           </button>
         </div>
         <div className="">
