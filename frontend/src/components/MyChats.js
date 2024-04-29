@@ -5,7 +5,7 @@ import { ChatState } from "../Context/ChatProvider";
 import axios from "axios";
 import { getSender } from "./config/chatLogic";
 
-const MyChats = () => {
+const MyChats = ({ fetchAgain }) => {
   const notify = (msg) => toast(msg);
   const [loggedUser, setLoggedUser] = useState();
   const { user, setSelectedChat, chats, setChats } = ChatState();
@@ -28,7 +28,7 @@ const MyChats = () => {
   useEffect(() => {
     setLoggedUser(JSON.parse(localStorage.getItem("userInfo")));
     fetchChats();
-  }, []);
+  }, [fetchAgain]);
 
   return (
     <div>
@@ -37,6 +37,7 @@ const MyChats = () => {
           chats.map((chat) => {
             return (
               <div
+                onClick={() => setSelectedChat(chat)}
                 className="flex items-center gap-3 p-1 cursor-pointer rounded-xl hover:bg-[#1ECC9C] hover:text-white"
                 key={chat._id}
               >
